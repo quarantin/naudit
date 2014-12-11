@@ -1,0 +1,19 @@
+metadata for a session (regex, path, exts)
+templating for each language/session
+add option to specify what part of the path should not be displayed to avoid too long lines
+add option to choose gnu/posix regex
+add interactive search feature
+custom tags in session seem to not be taken into account
+detect extension/filetype to choose appropriate editor (for example hexedit for binary data, vim for source code files etc)
+print number of match per map file in gui
+try to manage syntax highlighing/colors
+allow to modify a project (for exemple add regex) and being able to keep status for lines of code that have already been audited
+add option to match regex in binary data
+plug in sql subsystem to store sessions instead of storing them in flat files (sqlite, mysql, pgsql, oracle). Also would allow for cooperative auditing. Makes me wonder if a web interface would be useful.
+run text editors with options to higlight current regex
+parse configuration file
+add configuration option to specify default extension list
+add option to ignore some path (like .svn, .cvs etc)
+add verbose mode to see all the files which are searched
+implement update/merge map file
+add command line switch to hide some line depending on their status

@@ -1,0 +1,9 @@
+_get_user:_get_user
+_put_user:_put_user
+_copy_to_user:_copy_to_user
+_copy_from_user:_copy_from_user
+get_user:[^_]get_user
+put_user:[^_]put_user
+copy_to_user:[^_]copy_to_user
+copy_from_user:[^_]copy_from_user
+_ioctl:_ioctl

@@ -1,0 +1,25 @@
+#compdef naudit
+
+ARGUMENTS=(\
+        "(- *)"{'-h','--help'}'[help]'                          \
+        "(- *)"{'-v','--version'}'[version]'                    \
+        {'-c','--config'}'[config]:config:_files'               \
+        {'-s','--session'}'[session]:session:->session'         \
+        {'*-e','*--ext'}'[ext]:exts'                            \
+        {'*-E','*--ext-file'}'[ext-file]:exts-file:_files'      \
+        {'*-p','*--path'}'[path]:path:_dir_list'                \
+        {'*-P','*--path-file'}'[path-file]:path-file:_files'    \
+        {'*-r','*--regex'}'[regex]:regex:'                      \
+        {'*-R','*--regex-file'}'[regex-file]:regex-file:_files' \
+        {'*-t','*--tag'}'[tag]:tag:'                            \
+        {'*-T','*--tag-file'}'[tag-file]:tag-file:_files'       \
+        '*::files:_files')
+
+_arguments $ARGUMENTS
+
+case $state in
+    session)
+        compadd ~/.naudit/*(/:t)
+        ;;
+esac
+

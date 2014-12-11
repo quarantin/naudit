@@ -1,0 +1,27 @@
+dependencies:
+
+ - libcdk5 (ncurses widget library)
+ - libncurses5 (ncurses library)
+ - autotools (GNU autotools)
+
+Install:
+
+ $ ./bootstrap
+ $ ./configure
+ $ make
+ $ sudo make install
+
+Basic usage example:
+
+Let's say you want to audit all calls to strcpy and memcpy in the Linux kernel, run naudit this way:
+
+ $ naudit -s mySessionName -r strcpy -r memcpy /usr/src/linux
+
+Now you can navigate through lines of code using arrow keys, inspect a line with your editor by pressing
+enter, cycle through the different result sets with TAB key, choose the apropriate tag for a line using
+space key. Press q to quit naudit
+
+Then if you need to resume auditing at a later time, you can run naudit like this:
+
+ $ naudit -s mySessionName
+

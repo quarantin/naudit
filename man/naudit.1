@@ -1,0 +1,125 @@
+.TH "naudit" "1" "February 2011" "" ""
+.SH "NAME"
+naudit \- ncurses source code audit tool.
+.SH "SYNOPSIS"
+.TP
+.B naudit [-h] [-c <dir>] [-e <list>] [-E <file>] [-p <dirs>] [-P <file>] [-r <label>:<regex>] [-R <file>] [-s <session>] [-t <list>] [-T <file>] [-v] [raw files...]
+
+.SH "DESCRIPTION"
+.TP
+naudit is a tool to help audit source code, keeping track of audit session, and allows to tag lines of code with some user-defined status. Naudit can be used to audit code source in any language as long as you can find a regular expression to match the lines of code you want to audit. This means naudit doesn't try to analyse source code from a higher point of view than simple pattern matching. This can be seen as a default or a quality depending on the goal to achieve.
+.TP
+naudit is not by any means a tool that will find vulnerabilities on his own for you. It still requires interpretation from a security analyst.
+
+.SH "OPTIONS"
+.TP 
+.B \-h, \-\-help
+Display naudit basic usage and exit.
+.TP
+.B \-c, \-\-config <dir>
+Use `<dir>' as config folder. Can be specified only once.
+.TP
+.B \-e, \-\-ext <list>
+List of file extension to search for.
+.TP
+.B \-E, \-\-ext-file <file>
+Use `<file>' to get a list of file extension to search for.
+.TP
+.B \-p, \-\-path <dirs>
+List of directories to search for files to audit.
+.TP
+.B \-P, \-\-path-file <file>
+Use `<file>' to get a list of path to search for files to audit.
+.TP
+.B \-r, \-\-regex <label>:<regex>
+Use `<regex>' as a pattern to match lines of code to audit. All matching lines will be written to a file named `<label>' in the current session.
+.TP 
+.B \-R, \-\-regex-file <file>
+Use `<file>' to get a list of regex to match lines of code to audit. The file must contain one `<label>:<regex>' per line.
+.TP 
+.B \-s, \-\-session <session>
+Use `<session>' as the current session. Create it if required. Can be specified only once.
+.TP 
+.B \-t, \-\-tag <list>
+Add all the tag in `<list>' to the list of tags.
+.TP
+.B \-T, \-\-tag-file <file>
+Use `<file>' to get a list of tags for the current session.
+.TP 
+.B \-v,  \-\-version
+Display naudit version information and exit.
+
+.SH "CONFIGURATION"
+When naudit start it tries to use ~/.naudit/ as the configuration folder to search for sessions and tag files. If this folder is not found and no --config option is specified, naudit will try to create it. All sessions are then created under that folder. Each session folder may contain a tag file to override the default one. It also contains one or more map files.
+
+.SH "KEYS"
+.TP
+.B <Up>/<Down>
+Move around lines of code.
+.TP
+.B <Left>/<Right>
+Move the view around.
+.TP
+.B <Enter>
+View the selected line of code.
+.TP
+.B <Space>
+Cycle through the available tags for the current line.
+.TP
+.B <Tab>
+Switch between map files of the current session.
+.TP
+.B q
+Quit naudit
+
+.SH "JARGON"
+.TP
+.B tag file
+A tag file is a file containing one tag per line. When running naudit, each line of code can be assigned a tag. The default tag assigned to each line of code is TODO, meaning the line hasn't been audited yet.
+.TP
+.B map file
+A map file is a file whose content is composed of 4 columns, delimited by `:', each line terminated by a `\\n'.
+The first column is numeric and contains the tag index for each line of code in the map file. The tag index is the index of a tag in the tag file.
+The second column contains the absolute path to the file, for each line of code to audit.
+The third column contains the line number at which the line can be found in the file.
+The fourth colum contains the raw lines of code themselves.
+.TP
+.B regex-file
+A regex-file is a file containing lines in the form
+.B `<label>:<regex>'.
+Every label should be unique.
+.TP
+.B session
+A session is a folder containing some map files and eventually a tag file. The name of the session is the name of the corresponding folder. Session folder are located under the config folder.
+.TP
+.B config folder
+The configuration folder is the base folder where naudit stores the default tag file, and sessions information
+
+.SH "FILES"
+~/.naudit/
+~/.naudit/tags.conf
+
+.SH "ENVIRONMENT"
+HOME, EDITOR
+
+.SH "EXAMPLES"
+Taking a look at all calls to strcpy in the linux kernel:
+.TP
+$ naudit -s kernel -p /usr/src/linux -e c,h,S -r 'strcpy:strcpy'
+.TP
+Then taking a look at all calls to memcpy reusing the same session:
+.TP
+$ naudit -s kernel -p /usr/src/linux -e c,h,S -r 'memcpy:memcpy'
+.TP
+Later, resuming the whole `kernel' session:
+.TP
+$ naudit -s kernel
+
+.SH "BUGS"
+Report bugs at bugs@naudit.org
+
+.SH TODO
+find a place for the project + bug tracker + email + update man page
+
+.SH "SEE ALSO"
+grep(1), find(1), ctags(1), cscope(1)

@@ -1,0 +1,49 @@
+
+_naudit() 
+{
+    local cur prev opts
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+
+    if [[ ${cur} == -* ]]; then
+        local opts="--help --config --ext --ext-file --path --path-file --regex --regex-file --session --tag --tag-file --version"
+        COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
+        return 0
+    fi
+
+    case ${prev} in
+
+        -h|--help)
+            return 0;
+            ;;
+
+        -v|--version)
+            return 0;
+            ;;
+
+        -e|--ext)
+            return 0;
+            ;;
+
+        -r|--regex)
+            return 0;
+            ;;
+
+        -s|--session)
+            local sessions=`cd ~/.naudit && a=(*/) && printf '%s\n' "${a[@]%/}"`
+            COMPREPLY=( $(compgen -W "${sessions}" -- ${cur}) )
+            return 0
+            ;;
+
+        -t|--tag)
+            return 0;
+            ;;
+
+        *)
+            _filedir
+            ;;
+    esac
+}
+complete -F _naudit naudit
+

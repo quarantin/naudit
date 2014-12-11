@@ -1,0 +1,15 @@
+input:\$_[A-Z]+[^a-z0-9]
+include:(^|[^a-zA-Z0-9])(include|require)[^a-zA-Z0-9].*\$
+sql:(^|[^a-zA-Z0-9])(SELECT|INSERT|UPDATE|ALTER|LOAD|DROP|CREATE|req|qry|sql)($|[^a-zA-Z0-9])
+sql2:query|sql
+print:(^|[^a-zA-Z0-9])(echo|print|print_r|var_dump|die|var_export|ob_start|ob_get_contents).*\$
+preg:(^|[^a-zA-Z0-9])(preg_replace).*\$
+serialize:(^|[^a-zA-Z0-9])(unserialize|serialize).*\$
+escape:(^|[^a-zA-Z0-9])(escapeshellcmd|escapeshellarg|addslashes|stripcslashes|stripslashes|htmlentities|htmlspecialchars|urlencode|quotemeta|strip_tags|get_magic_quotes_gpc)
+exec:(^|[^a-zA-Z0-9])(exec|popen|passthru|system|proc_open|shell_exec).*\$
+fs:(^|[^_a-zA-Z0-9])(open|fopen|read|fread|fgets|file|readfile|file_get_contents|file_put_contents|chmod|chown|mkdir|readdir|rmdir|unlink|move_uploaded_file)([^_a-zA-Z0-9]).*\$
+misc:(^|[^a-zA-Z0-9])(mail|header)([^a-z]).*\$
+ini:(^|[^a-zA-Z0-9])(get_cfg_var|ini_get|ini_get_all|ini_restore|ini_set)
+session:(^|[^a-zA-Z0-9])(session_[a-z]+)
+cookies:(^|[^a-zA-Z0-9])(setcookie|setrawcookie)
+proxy:proxy|HTTP_X_FORWARDED_FOR

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+rm -f *.o */*.o src/naudit configure Makefile Makefile.in config.log autoscan.log configure.scan config.h config.h.in config.h.in~ config.status aclocal.m4 stamp-h1 configure.ac.in */Makefile */Makefile.in 
+rm -rf autom4te.cache src/.deps
+
+if [ -z "$1" ]; then
+	aclocal
+	autoconf
+	autoheader
+	automake
+fi
