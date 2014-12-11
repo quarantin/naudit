@@ -1,4 +1,8 @@
-dependencies:
+Overview:
+
+Source code audit tool based on ncurses library. Using naudit you can search for lines of text matching specific patterns and tag/review those matching lines.
+
+Dependencies:
 
  - libcdk5 (ncurses widget library)
  - libncurses5 (ncurses library)
