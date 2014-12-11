@@ -15,8 +15,6 @@ Install:
 
 Also you have shell completion scripts available for bash or zsh in ./shell folder.
 
-Help:
-
 Usage:
 	./naudit <options> [path...]
 
