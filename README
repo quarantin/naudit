@@ -4,9 +4,7 @@ Source code audit tool based on ncurses library. Using naudit you can search for
 
 Dependencies:
 
- - libcdk5 (ncurses widget library)
- - libncurses5 (ncurses library)
- - autotools (GNU autotools)
+ - libcdk5 (ncurses widget library) (sudo apt-get install libcdk5 libcdk5-dev)
 
 Install:
 
@@ -15,15 +13,39 @@ Install:
  $ make
  $ sudo make install
 
+Also you have shell completion scripts available for bash or zsh in ./shell folder.
+
+Help:
+
+Usage:
+	./naudit <options> [path...]
+
+		-h, --help                   	Print this help and exit
+		-v, --version                	Print naudit version and exit
+		-b, --batch                  	Batch mode
+		-c, --config <folder>        	Use <folder> as config folder
+		-e, --ext <list>             	List of file extensions to search for
+		-E, --ext-file <file>        	Use <file> to get a list of extensions to search for, one extension per line
+		-i, --ignore-ext <list>      	List of file extensions to ignore
+		-I, --ignore-ext-file <file> 	Use <file> to get a list of file extensions to ignore, one extension per line
+		-p, --path <list>            	List of path to search for files to audit
+		-P, --path-file <file>       	Use <file> to get a list of path to search for files to audit, one path per line
+		-r, --regex [label:]<regex>  	Use <regex> as a pattern to match lines of code and store them in a file called label in the current session
+		-R, --regex-file <file>      	Use <file> to get a list of regex to match lines of code to audit, one [label:]<regex> per line. See --regex
+		-s, --session <session>      	Session name to work on. Creates a new session if required
+		-t, --tag <list>             	List of tags for the current session
+		-T, --tag-file <file>        	Use <file> to get a list of tags for the current session, one tag per line
+
+
 Basic usage example:
 
 Let's say you want to audit all calls to strcpy and memcpy in the Linux kernel, run naudit this way:
 
- $ naudit -s mySessionName -r strcpy -r memcpy /usr/src/linux
+ $ naudit -s mySessionName -e c,h -r strcpy -r memcpy /usr/src/linux
 
 Now you can navigate through lines of code using arrow keys, inspect a line with your editor by pressing
 enter, cycle through the different result sets with TAB key, choose the apropriate tag for a line using
-space key. Press q to quit naudit
+space key. Press q to quit naudit.
 
 Then if you need to resume auditing at a later time, you can run naudit like this:
 
