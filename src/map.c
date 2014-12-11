@@ -89,7 +89,7 @@ map_t *new_map (const char *path, vector_t *lines)
 	map_t *map;
 	char string[BUFSIZ];
 	config_t *config = get_config();
-	char *name = basename(path);
+	const char *name = basename(path);
 
 	map = calloc(1, sizeof(map_t));
 	if (!map) {
