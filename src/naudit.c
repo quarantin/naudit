@@ -1,6 +1,6 @@
 #include <getopt.h>
 #include <string.h>
-#include <cdk/cdk.h>
+#include <cdk.h>
 #include <curses.h>
 #include "naudit.h"
 #include "config.h"

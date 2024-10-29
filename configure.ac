@@ -12,17 +12,17 @@ AC_PROG_CC
 AC_PROG_INSTALL
 
 # Checks for libraries.
-AC_CHECK_LIB([curses], [endwin])
-AC_CHECK_LIB([cdk], [newCDKSelection], [:], [:], [-lcurses])
+AC_CHECK_LIB([ncurses], [endwin])
+AC_CHECK_LIB([cdkw], [newCDKSelection], [:], [:], [-lncurses])
 
-CDK_LIBS=-lcdk
+CDK_LIBS=-lcdkw
 AC_SUBST(CDK_LIBS)
 
-CURSES_LIBS=-lcurses
+CURSES_LIBS="-lncurses -ltinfo"
 AC_SUBST(CURSES_LIBS)
 
 # Checks for header files.
-AC_CHECK_HEADERS([stdio.h stdlib.h getopt.h libgen.h string.h strings.h sys/types.h sys/wait.h curses.h cdk/cdk.h])
+AC_CHECK_HEADERS([stdio.h stdlib.h getopt.h libgen.h string.h strings.h sys/types.h sys/wait.h curses.h cdk.h])
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_TYPE_PID_T

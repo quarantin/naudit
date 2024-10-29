@@ -1,5 +1,5 @@
 #define _XOPEN_SOURCE 500
-#include <cdk/cdk.h>
+#include <cdk.h>
 #include "naudit.h"
 #include "config.h"
 #include "vector.h"

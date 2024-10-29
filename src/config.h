@@ -1,7 +1,7 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#include <cdk/cdk.h>
+#include <cdk.h>
 #include "naudit.h"
 #include "vector.h"
 
